@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tasteme Case Study｜黃子哲</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+/* 版面：直接使用 Figma「作品集 / Tasteme」匯出的整頁設計圖，依序排列；只加上導覽與可點擊的連結 */
+:root {
+  --bg: #f4f4f2;
+  --ink: #161616;
+  --muted: #6b6b68;
+  --rule: #dcdcd8;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #121312; --ink: #ececea; --muted: #a2a29d; --rule: #2e2f2d; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #121312; --ink: #ececea; --muted: #a2a29d; --rule: #2e2f2d; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+header.top { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--rule); padding: 0 20px; }
+header.top > div { max-width: 1025px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 14px; }
+.brand { font-weight: 700; font-size: 17px; text-decoration: none; }
+.brand span { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.back { text-decoration: none; color: var(--muted); font-size: 15px; }
+.back:hover { color: var(--ink); }
+
+.slides { max-width: 1025px; margin: 0 auto; }
+.slides img { display: block; width: 100%; height: auto; }
+
+.links { max-width: 1025px; margin: 0 auto; padding: 40px 20px 56px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn { display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border-radius: 999px; border: 1.5px solid var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; }
+.btn.solid { background: var(--ink); color: var(--bg); }
+
+/* Logo 與深淺色切換 */
+.brand { display: inline-flex; align-items: center; }
+.brand .logo { height: 34px; width: auto; }
+.logo-w { display: none; }
+:root[data-theme="dark"] .logo-b { display: none; }
+:root[data-theme="dark"] .logo-w { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-b { display: none; }
+  :root:not([data-theme="light"]) .logo-w { display: block; }
+}
+.top-right { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.theme-toggle { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; padding: 0; }
+.theme-toggle:hover { border-color: var(--ink); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
+}
+/* 外部網站連結：文字＋↗；站內跳轉與彈窗用按鈕 */
+.ext { display: inline-flex; align-items: center; gap: 4px; min-height: 48px; padding: 0 6px; color: var(--ink); font-size: 15px; font-weight: 500; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+.ext span { color: var(--muted); font-weight: 400; }
+.ext:hover { text-decoration-color: currentColor; }
+.ext.todo { color: var(--muted); text-decoration-style: dashed; }
+</style>
+<script>
+/* 在首頁的 Case Study 跳窗裡開啟時：隱藏自己的頁首與「回到作品」，Esc 交給首頁關閉跳窗 */
+if (window.self !== window.top) {
+  document.documentElement.classList.add('embed');
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') window.parent.postMessage('cs-close', location.origin); });
+}
+</script>
+<style>
+.embed header.top, .embed .pf-back, .embed .links a[href^="index.html"] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <a class="brand" href="index.html" aria-label="黃子哲 Huang Tsu-Che"><img class="logo logo-b" src="assets/logo-b.png" width="360" height="144" alt=""><img class="logo logo-w" src="assets/logo-w.png" width="360" height="144" alt=""></a>
+    <div class="top-right">
+      <a class="back" href="index.html#works">← 回到作品</a>
+      <button class="theme-toggle" type="button" aria-label="切換深色／淺色模式"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Tasteme 良品媒合平台：使用者經驗改善研究</h1>
+  <div class="slides">
+    <img src="assets/tasteme/00-home.jpg" width="2050" height="2530" fetchpriority="high" alt="Tasteme 封面：良品不浪費，降低碳排放。團隊 4 人；我的角色 PM、UX Research、UX Design；總時程 8 週；專案目標為資訊簡化、提升使用者體驗。">
+    <img src="assets/tasteme/01.jpg" width="2050" height="5269" loading="lazy" alt="專案背景：Tasteme 的商業模式、核心目標、遇到的困難，以及現有剩食模式分析。">
+    <img src="assets/tasteme/02.jpg" width="2050" height="2872" loading="lazy" alt="研究計畫：研究目標、設計思考研究框架、預期成效與 9 週研究時程圖。">
+    <img src="assets/tasteme/03.jpg" width="2050" height="3054" loading="lazy" alt="桌面研究：App 評論分析，以及 Persona 小美從發現到取件的使用者旅程。">
+    <img src="assets/tasteme/04-1.jpg" width="2050" height="4676" loading="lazy" alt="量化問卷：124 份有效問卷的年齡分布、搜尋時最在意的店家資訊、訂單頁希望包含的資訊。">
+    <img src="assets/tasteme/04-2.jpg" width="2050" height="2082" loading="lazy" alt="量化問卷：各年齡層對惜食精神落實的感受，以及推薦與否在各階段的滿意度差異。">
+    <img src="assets/tasteme/05.jpg" width="2050" height="4454" loading="lazy" alt="Persona 與質化分析：5 位受訪者的 2 對 1 訪談，依瀏覽、儲值、下單、導航、取貨、永續理念整理的發現。">
+    <img src="assets/tasteme/06.jpg" width="2050" height="4140" loading="lazy" alt="競品分析：Uber Eats 與 ResQ 的介面功能比較與 SWOT 分析，整理出 Must to Have 與 Nice to Have。">
+    <img src="assets/tasteme/07.jpg" width="2048" height="5232" loading="lazy" alt="資訊架構與 User flow。">
+    <img src="assets/tasteme/08.jpg" width="1025" height="3435" loading="lazy" alt="Wireframe 與 Style Guideline：色彩、字級與圖示規範。">
+    <img src="assets/tasteme/09.jpg" width="1025" height="3203" loading="lazy" alt="Tasteme APP UI：首次註冊、首頁推薦、地圖瀏覽附近店家與下單流程的設計說明。">
+    <img src="assets/tasteme/10.jpg" width="1025" height="3788" loading="lazy" alt="APP UI：我的訂單、可兌換頁面、通知頁面設計說明；企業合作證明；重點反思 Key Takeaways。">
+  </div>
+  <div class="links">
+    <a class="ext" href="https://reurl.cc/5dbN16" target="_blank" rel="noopener">Hero Prototype <span aria-hidden="true">↗</span></a>
+    <a class="ext" href="https://reurl.cc/2jNZVO" target="_blank" rel="noopener">產品需求規劃書 PRD <span aria-hidden="true">↗</span></a>
+    <a class="btn" href="index.html#works">回到作品</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.querySelector('.theme-toggle');
+  if (!btn) return;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function current() { return root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light'); }
+  function sync() { btn.setAttribute('aria-pressed', current() === 'dark' ? 'true' : 'false'); }
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
